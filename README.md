@@ -1,49 +1,40 @@
 # Agent Skills Repository
 
-A curated collection of modular, reusable skills for AI coding agents (Claude Code, Cursor, Antigravity, GitHub Copilot, Windsurf, etc.) compatible with [skills.sh](https://skills.sh) and the `npx skills` package manager.
+Skills for agents.
+Compatible with [skills.sh](https://skills.sh) (`npx skills`).
 
-## Available Skills
+## Skills
 
 | Skill | Description | Installation Command |
 | :--- | :--- | :--- |
 | **audit-config** | Audits persistent workspace configuration (instructions, skills, MCPs, and memory) with a KEEP/REMOVE approval workflow. | `npx skills add ArhamBafna/agent-skills@audit-config` |
+| **dsa-codebase-audit** | Run an application-wide, read-only DSA and organizing-model audit with bounded agent lanes. | `npx skills add ArhamBafna/agent-skills@dsa-codebase-audit` |
 
 ---
 
-## Installation Guide
+## Installation
 
-You can install skills into any workspace or globally on your system using the `skills` CLI:
-
-### 1. Install to Current Project Workspace
-To install the `audit-config` skill into your active project (`.agents/skills/`):
+### 1. Specific Skill
 ```bash
-npx skills add ArhamBafna/agent-skills@audit-config
+npx skills add ArhamBafna/agent-skills@<skill-name>
 ```
 
-Or to install all skills in this repository:
+### 2. All Skills
 ```bash
 npx skills add ArhamBafna/agent-skills
 ```
-
-### 2. Install Globally (Across All Projects)
-To make the skill available across all workspaces on your machine:
-```bash
-npx skills add -g ArhamBafna/agent-skills@audit-config
-```
-
 ---
 
 ## Adding New Skills
 
 To add a new skill to this repository:
-1. Create a subdirectory under `skills/<new-skill-name>/`
+1. Create  subdirectory under `skills/<new-skill-name>/`
 2. Add a `SKILL.md` with standard YAML frontmatter:
    ```markdown
    ---
-   name: <new-skill-name>
-   description: <Clear trigger description>
+   name: <name>
+   description: <description>
    ---
-   # Instructions
-   ...
+   <body>
    ```
-3. Commit and push to `main`.
+3. Commit and push.
