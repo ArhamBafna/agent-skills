@@ -1,18 +1,17 @@
-# Agent Skills Repository
+# Agent Skills
 
-Skills for agents.
-Compatible with [skills.sh](https://skills.sh) (`npx skills`).
+Skills for agents. Compatible with [skills.sh](https://skills.sh) (`npx skills`).
 
 ## Skills
 
-| Skill | Description | Installation Command |
+| Skill | Description | Install |
 | :--- | :--- | :--- |
-| **audit-config** | Audits persistent workspace configuration (instructions, skills, MCPs, and memory) with a KEEP/REMOVE approval workflow. | `npx skills add ArhamBafna/agent-skills@audit-config` |
-| **dsa-codebase-audit** | Run an application-wide, read-only DSA and organizing-model audit with bounded agent lanes. | `npx skills add ArhamBafna/agent-skills@dsa-codebase-audit` |
+| **audit-config** | Audit persistent workspace config (instructions, skills, MCPs, memory) with KEEP/REMOVE workflow. | `npx skills add ArhamBafna/agent-skills@audit-config` |
+| **dsa-codebase-audit** | App-wide, read-only DSA and organizing-model audit with bounded agent lanes. | `npx skills add ArhamBafna/agent-skills@dsa-codebase-audit` |
 
 ---
 
-## Installation
+## Install
 
 ### 1. Specific Skill
 ```bash
@@ -23,13 +22,13 @@ npx skills add ArhamBafna/agent-skills@<skill-name>
 ```bash
 npx skills add ArhamBafna/agent-skills
 ```
+
 ---
 
-## Adding New Skills
+## Add New Skill
 
-To add a new skill to this repository:
-1. Create  subdirectory under `skills/<new-skill-name>/`
-2. Add a `SKILL.md` with standard YAML frontmatter:
+1. Create folder `skills/<skill-name>/`
+2. Add `SKILL.md` with YAML frontmatter:
    ```markdown
    ---
    name: <name>

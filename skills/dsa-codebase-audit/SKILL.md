@@ -1,106 +1,130 @@
 ---
 name: dsa-codebase-audit
-description: Run an application-wide, read-only DSA and organizing-model audit with bounded agent lanes.
+description: Run application-wide, read-only DSA and organizing-model audit to identify state complexity, data structure, and control flow simplifications. Use when asked to "audit codebase", "DSA audit", "simplify architecture", "refactor data structures", "find complexity hotspots", or when running /dsa-codebase-audit.
 ---
 
 # DSA Codebase Audit
 
-Audit this entire codebase for materially useful simplifications in its data structures, state representation, control flow, algorithms, and ownership.
+Audit codebase for simplifications in data structures, state representation, control flow, algorithms, ownership.
 
-This is an audit-only exercise. Do not edit files, run tests, implement recommendations, commit, or push. Read-only inspection commands are allowed.
+Read-only audit. Do not edit files, run tests, implement changes, commit, or push. Read-only inspection commands allowed.
 
-You are the coordinator. Continue until the complete codebase has been reviewed and the final audit is validated.
+Coordinator run until complete codebase reviewed and final audit validated.
 
-1. Establish the coverage contract
+## 1. Coverage Contract
 
-Inspect the repository and inventory every identifiable subsystem.
+Inspect repository. Inventory every subsystem.
 
-Give each subsystem:
-- a stable ID and descriptive name;
-- an exact ownership boundary;
-- its key implementation files;
-- relevant public interfaces, major call sites, and tests;
-- a status: queued, in review, recommend, or skip.
+**Small Codebase Shortcut:** If repository has <10 source files, treat whole repo as single subsystem. Direct audit pass.
 
-Include frontend, backend, shared infrastructure, platform bridges, generated-contract ownership, and test/tooling infrastructure where materially relevant.
+For standard/large repos, assign each subsystem:
+- Stable ID and name
+- Exact ownership boundary
+- Key implementation files
+- Public interfaces, major call sites, tests
+- Status: `queued`, `in review`, `recommend`, `skip`
 
-Create one canonical scratchpad or report containing:
-- the subsystem inventory;
-- confirmed opportunities;
-- explicit skip decisions;
-- cross-cutting patterns;
-- duplicates and superseded findings;
-- final priorities and dependencies;
-- an audit log.
+Include frontend, backend, shared infra, platform bridges, contracts, test/tooling where relevant.
 
-Treat this inventory as the coverage contract. Do not assume broad catch-all rows prove coverage.
+Create canonical scratchpad or report:
+- Subsystem inventory
+- Confirmed opportunities
+- Explicit skip decisions
+- Cross-cutting patterns
+- Duplicates and superseded findings
+- Final priorities and dependencies
+- Audit log
 
-2. Run bounded subsystem reviews
+Inventory is coverage contract. Catch-all rows do not prove coverage.
 
-Use fresh, read-only agents where available. Give every worker one distinct subsystem with an exact, non-overlapping ownership boundary.
+## 2. Bounded Subsystem Reviews
 
-Keep concurrency bounded to the number of lanes you can actively coordinate. Use one consolidated wait mechanism, do not interrupt productive workers merely because they are slow, and close completed workers after harvesting their results.
+### Execution Modes
+- **Multi-Agent Mode (Preferred):** Fresh, read-only sub-agents. One worker per subsystem with non-overlapping boundary. Keep concurrency bounded. Close completed workers after harvesting results.
+- **Single-Agent Fallback:** If sub-agents unavailable, review inventoried subsystems sequentially in coordinator session.
 
-Each worker receives this brief:
+### Worker Brief
+Review assigned subsystem for at most two simplifications in data structures, state representation, or organizing model.
 
-Review the assigned subsystem for at most two materially useful simplifications in its data structures, state representation, or organizing model.
-
-Inspect its implementation, public interfaces, major call sites, and existing tests. Stay within the assigned ownership boundary. You may identify cross-subsystem concerns, but do not expand the scope to solve them.
+Inspect implementation, interfaces, call sites, tests. Stay in assigned boundary. Note cross-subsystem issues, but do not expand scope.
 
 Look for:
-- scattered booleans or nullable fields that permit invalid combinations and should become a state machine or discriminated union;
-- repeated assumptions about object shape that need a shared typed model;
-- duplicated branching that a small map, registry, reducer, or command model would remove;
-- unclear state or behavior ownership that a small module boundary would clarify;
-- repeated scans, transformations, or lookups where a more appropriate collection or index would materially simplify behavior;
-- lifecycle, concurrency, or async states whose representation permits stale or contradictory state.
+- Scattered booleans or nullable fields allowing invalid states -> state machine or discriminated union.
+- Repeated shape assumptions -> shared typed model.
+- Duplicated branching -> map, registry, reducer, or command pattern.
+- Unclear ownership -> small module boundary.
+- Repeated scans, transforms, lookups -> proper collection or index.
+- Lifecycle, concurrency, async states allowing stale or conflicting state.
 
-Do not force an abstraction. Prefer boring local code when it is already clear.
+Do not force abstractions. Prefer simple local code when clear.
 
-Do not recommend changes solely for stylistic consistency, hypothetical extensibility, minor line-count reduction, or moving existing branching behind a new type.
+Do not recommend changes for style only, hypothetical future needs, trivial line-count cuts, or moving branching behind types.
 
-Return at most two opportunities. If nothing clearly meets the threshold, return `skip`.
+Return at most two findings. If nothing meets bar, return `skip`.
 
-For every recommendation, provide:
+For each recommendation provide:
+1. Verdict: `recommend` or `skip`
+2. Evidence: exact file and line references
+3. Current problem: complexity or invalid states
+4. Proposed model: simpler representation and why
+5. Implementation scope: affected files and interfaces
+6. Regression risks and migration concerns
+7. Validation plan: existing and needed tests
+8. Confidence: `high`, `medium`, or `low`
 
-1. Verdict: recommend or skip.
-2. Evidence with exact file and line references.
-3. Current complexity or invalid states.
-4. Proposed representation and why it is simpler.
-5. Smallest credible implementation scope, including affected files and interfaces.
-6. Regression risks and migration concerns.
-7. Existing and additional validation required.
-8. Confidence: high, medium, or low.
+## 3. Validate and Synthesize
 
-3. Validate and synthesize
+Coordinator verify every finding against code before accepting.
 
-The coordinator must independently verify every finding against the current repository before accepting it.
+Reject, narrow, or demote findings that are vague, duplicate, misunderstand intent, or move complexity.
 
-Reject, narrow, or demote recommendations that are vague, duplicate another finding, misunderstand intentional semantics, or merely relocate complexity.
+Record skips as completed coverage. Deduplicate findings. Assign accepted recommendations to one subsystem.
 
-Record skips as completed coverage. Deduplicate overlapping findings and assign each accepted recommendation to one authoritative subsystem.
+Process review batches until inventory complete.
 
-Continue opening bounded review batches until every inventory row is complete.
+## 4. Audit the Audit
 
-4. Audit the audit
+Run fresh passes before finish:
+- Coverage and missing subsystem boundaries
+- Duplication and ownership overlap
+- Materiality and over-abstraction
+- Schema completeness
+- Dependency-aware priority ranking
 
-Before finishing, run fresh independent passes for:
+If coverage gap found, add explicit subsystem row and audit. Do not broaden existing boundary.
 
-- repository coverage and missing subsystem boundaries;
-- duplication and ownership overlap;
-- materiality and over-abstraction;
-- schema completeness;
-- dependency-aware priority ranking.
+Rank recommendations by impact, confidence, effort, blast radius, dependencies. Pick best first implementation slices.
 
-If the coverage pass finds a real omission, add an explicit subsystem row and audit it. Do not hide it by broadening a previously completed boundary.
+Complete when:
+- Every subsystem reviewed
+- Every subsystem has recommendation or explicit skip
+- Every finding has complete evidence, scope, risk, validation
+- Duplicates and weak abstractions removed
+- Priorities and dependencies consistent
+- Repository unchanged
 
-Rank the final recommendations by concrete impact, confidence, implementation effort, blast radius, and prerequisites. Identify the best first implementation slices.
+## 5. Output Format
 
-The audit is complete only when:
+### DSA Codebase Audit Report
 
-- every identifiable subsystem has been reviewed;
-- every subsystem has a recommendation or explicit skip;
-- every finding has complete evidence, scope, risk, and validation fields;
-- duplicates and weak abstractions have been removed;
-- priorities and dependencies are internally consistent;
-- the repository remains unchanged.
+#### Summary
+- **Subsystems Audited:** `<count>`
+- **Total Recommendations:** `<count>` | **Skips:** `<count>`
+- **Primary Complexity Themes:** `<bullet points>`
+
+#### Ranked Recommendations
+
+| Priority | Subsystem | Recommendation | Affected Files | Complexity / Risk | Confidence |
+|---|---|---|---|---|---|
+| P1 | `<id>` | `<title>` | `<file:lines>` | `<invalid state / risk>` | High / Med / Low |
+
+#### Detailed Findings & Proposed Simplifications
+For each accepted recommendation:
+- **Subsystem & Location:** `[file.ext:L1-L20](file:///path/to/file.ext#L1-L20)`
+- **Current Problem:** `<explanation of state/control-flow complexity>`
+- **Proposed Model:** `<concrete data structure or pattern simplification>`
+- **Implementation Scope:** `<files and interfaces to touch>`
+- **Risks & Verification:** `<regression risks and test plan>`
+
+#### Coverage & Skips
+- List skipped subsystems with 1-sentence rationale.
