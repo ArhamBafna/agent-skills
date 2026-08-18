@@ -1,4 +1,5 @@
-﻿.DS_Store
+.DS_Store
 Thumbs.db
 node_modules/
 *.log
+skills/linkedin-content-engine-custom/
