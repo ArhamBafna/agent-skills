@@ -1,5 +1,5 @@
 ---
-name: weekly-linkedin-content
+name: linkedin-content-engine
 description: >-
   Weekly LinkedIn content engine. Pulls fresh signal from your own profile plus
   a couple of creators you learn from, then produces a ranked idea bank and 5

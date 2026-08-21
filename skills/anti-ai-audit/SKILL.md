@@ -1,4 +1,4 @@
-﻿---
+---
 name: anti-ai-audit
 description: Audit frontend UI and docs for anti-AI patterns and slop. Scans code with hallmark, design-taste-frontend, impeccable, and humanise-text. Writes combined report. Use when asked to audit AI patterns, check AI slop, find anti-AI tells, or run /anti-ai-audit.
 ---

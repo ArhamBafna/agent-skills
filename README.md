@@ -1,4 +1,4 @@
-﻿# Agent Skills
+# Agent Skills
 
 Skills for agents. Compatible with [skills.sh](https://skills.sh) (`npx skills`).
 

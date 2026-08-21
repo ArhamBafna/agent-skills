@@ -1,4 +1,4 @@
-﻿# Skill overlap analysis
+# Skill overlap analysis
 
 I read the skill metadata under `C:\Users\bafna_sb19qr0\.agents\skills`. The biggest overlaps are:
 
