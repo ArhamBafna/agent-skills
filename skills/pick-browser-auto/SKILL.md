@@ -10,7 +10,7 @@ description: Decide whether to use agent-browser or playwriter and proceed with 
 ## Workflow
 1. Compare task with routing guide.
 2. Recommend one tool + short reason (use Recommendation format). Wait for user confirmation for tool. Don't start yet.
-3. After confirmation, load selected tool's skill (/agent-browser or /playwriter) and continue task with confirmed tool.
+3. After confirmation, load selected tool's skill (https://raw.githubusercontent.com/vercel-labs/agent-browser/refs/heads/main/skills/agent-browser/SKILL.md or https://raw.githubusercontent.com/remorses/playwriter/refs/heads/main/skills/playwriter/SKILL.md) and continue task with confirmed tool.
 
 ## Routing guide
 
@@ -28,7 +28,7 @@ Recommend `playwriter` for:
 - Work best expressed as evaluated JavaScript snippets.
 - Existing Playwright code or knowledge.
 
-Need more help/info? Read both tools' skills (/agent-browser or /playwriter).
+Need more help/info? Read both tools' skills (https://raw.githubusercontent.com/vercel-labs/agent-browser/refs/heads/main/skills/agent-browser/SKILL.md or https://raw.githubusercontent.com/remorses/playwriter/refs/heads/main/skills/playwriter/SKILL.md).
 
 ## Ambiguous task examples
 
