@@ -21,12 +21,12 @@ Execute batch of independent tasks (e.g., GitHub issues, PRs, feature lists) seq
 For each item in batch:
 1. **Read & Understand**: Briefly review specific issue or feature.
 2. **Implement**: CRITICAL: Use `/implement` skill for required changes.
-3. **Commit**: Git commit for this item (e.g., `feat: implement X`).
+3. **Closing**: Git commit for this item. If GitHub issue, close it. If progress doc exists, update
 4. **Move to Next**: Proceed to next batch item.
 
 ### Progress Tracking
 
-- **When to Track**: Decide how to track progress. Guidelines given are suggestions; you get final call. Suggestion: Execute sequentially for ≤ 5 items; create tracking file for 6+ items.
+- **When to Track**: Decide how to track progress. Suggestion (it is a suggestions; you get final call): Execute sequentially for ≤ 5 items; create tracking file for 6+ items.
 - **Formatting**: If creating tracking file, optimize layout for agent read/write speed. Human readability does not matter.
 - **Handling Questions**: Note every question in temporary file. Log in tracking file if active, or create dedicated questions file.
 - **Blockers**: If question blocks specific implementation or part of task, skip that blocked portion. Do as much as possible without the answer.
@@ -34,13 +34,15 @@ For each item in batch:
 ## End of Batch Procedures
 
 ONLY after ALL items processed (or skipped due to blockers):
-1. **Testing**: Run test suites globally if present (optional). Also solve problems arised from testing.
-2. **Graphify**: Run `graphify update .`.
-3. **Report**: Present consolidated summary: completed items, skipped items, collected questions, and other things.
+1. **Testing**: Run test suites globally if present (optional).
+2. **Cleaning**: Clean one-time scripts, scrap files, other items not be needed henceforth.
+3. **Graphify**: Run `graphify update .`.
+4. **Report**: Present consolidated summary: completed items, skipped items, collected questions, and other things. Do this in mad simple words. I don't code.
 
-## Anti-Patterns (NEVER Do These)
+## Anti-Patterns
 
-- **NEVER build massive upfront plan**: Do not plan all items before starting. Read first item, implement, commit, move to next.
-- **NEVER block entire batch on one question**: If item hits blocker or ambiguity, skip item and dependents, record question for report, continue to next item.
-- **NEVER ask user questions mid-batch**: User is away. Note question and proceed.
-- **NEVER run `graphify update` inside loop**: Slow and expensive. Run once at end.
+- Do NOT create an implantation plan asking me for permission to proceed.
+- Do not plan all items before starting.
+- NEVER block entire batch on one question
+- **NEVER ask user questions mid-batch**: Note question and proceed.
+- **NEVER run `graphify update` inside loop**: Run once at end.
