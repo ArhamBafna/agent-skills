@@ -10,12 +10,12 @@ Audit UI and docs for anti-AI patterns, generic template slop, and copy that fee
 ## 1. Target discovery
 
 1. If the user gives a path, scan that target.
-2. Otherwise scan likely UI/doc roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `*.css`, `docs/`, `README.md`.
+2. Otherwise scan likely UI/doc roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `*.css`, `docs/`, `README.md`, `AGENTS.md`.
 3. If the scan is broad, show the candidate files and ask for confirmation before auditing.
 
-## 2. Required local reference bundle
+## 2. Audit rules
 
-Before judging, read and apply these files from `references/`:
+Read + apply + find things mentioned in these files from `references/`:
 
 - `references/hallmark-slop-test.md`
 - `references/hallmark-anti-patterns.md`
@@ -23,23 +23,13 @@ Before judging, read and apply these files from `references/`:
 - `references/impeccable-audit.md`
 - `references/humanise-text-overused-ai-patterns.md`
 
-These are the source of truth. Do not depend on the original runtime skills being installed.
 
-## 3. Audit rules
-
-Check for:
-
-- visual AI tells: gradient hero, fake proof bars, default SaaS chrome, generic card grids, dark-glow blobs, over-motion, overused UI defaults
-- layout problems: weak hierarchy, category-interchangeable structure, generic spacing, missing product logic
-- copy issues: reveal hooks, contrarian slogans, buzzword-heavy copy, fake certainty, em-dash-heavy prose
-- honesty issues: fabricated metrics, proof claims without evidence, empty decoration that adds no meaning
-
-## 4. Output path
+## 3. Output path
 
 - If `docs/` exists, write to `docs/anti_ai_pattern_findings.md`.
 - If there is no `docs/` folder, ask before creating a root-level output file.
 
-## 5. Report format
+## 4. Report format
 
 Use this exact structure:
 
@@ -76,7 +66,7 @@ Verdict — <ships as slop | reads as AI-generated | close, fix minors>
 <ready prompt for the fix-up agent>
 ```
 
-## 6. Risk rule
+## 5. Risk rule
 
 If the fix touches forms, modals, stream UIs, icons, event bubbling, or state logic, add the ⚠️ risk tag and be explicit about the risk.
 
