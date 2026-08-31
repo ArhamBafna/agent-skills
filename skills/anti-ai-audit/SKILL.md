@@ -1,89 +1,83 @@
 ---
 name: anti-ai-audit
-description: Audit frontend UI and docs for anti-AI patterns and slop. Scans code with hallmark, design-taste-frontend, impeccable, and humanise-text. Writes combined report. Use when asked to audit AI patterns, check AI slop, find anti-AI tells, or run /anti-ai-audit.
+description: Audit frontend UI and docs for AI slop, anti-patterns, and generic generated design. Use when the user asks for an anti-AI audit, a slop check, a design review, or a doc quality pass. Read the local references in `references/` before judging anything.
 ---
 
 # Anti-AI Audit (/anti-ai-audit)
 
-Find, tag, report AI slop in UI and docs.
+Audit UI and docs for anti-AI patterns, generic template slop, and copy that feels generated.
 
-## 1. Required Skills Under Hood
+## 1. Target discovery
 
-Agent MUST read and run rules from 4 skills:
+1. If the user gives a path, scan that target.
+2. Otherwise scan likely UI/doc roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `*.css`, `docs/`, `README.md`.
+3. If the scan is broad, show the candidate files and ask for confirmation before auditing.
 
-1. **hallmark**:
-   - 58-gate slop test and named anti-patterns.
-   - Catch: gradient-text heads, purple/blue gradients, .glass-panel frosted glass, Lucide-only default, sparkle icons (✨ / <Sparkles>) as AI shortcut, 100vh centered hero, card-in-card, pure black/white.
-2. **design-taste-frontend**:
-   - Catch: Lila (purple/blue) trap, default generic SaaS grid, Inter-everywhere font.
-3. **impeccable**:
-   - Critique visual hierarchy, distinctiveness, 3-column card monotony.
-4. **humanise-text**:
-   - Catch AI fluff in docs/UI copy (scales seamlessly, streamlined, supercharge).
+## 2. Required local reference bundle
 
-## 2. Target Discovery
+Before judging, read and apply these files from `references/`:
 
-1. Find UI files (ui/src/, src/, components/, pages/, styles/, *.css) and docs (docs/*.md, README.md).
-2. If user give target path, scan target.
-3. If no target given, detect whole UI, show list, ask user confirm before scan.
+- `references/hallmark-slop-test.md`
+- `references/hallmark-anti-patterns.md`
+- `references/design-taste-frontend-anti-slop.md`
+- `references/impeccable-audit.md`
+- `references/humanise-text-overused-ai-patterns.md`
 
-## 3. Output Path
+These are the source of truth. Do not depend on the original runtime skills being installed.
 
-- docs/ folder exists: Write to docs/anti_ai_pattern_findings.md.
-- No docs/ folder: Ask user if root folder write OK before create file.
+## 3. Audit rules
 
-## 4. Report Format
+Check for:
 
-Output MUST follow template:
+- visual AI tells: gradient hero, fake proof bars, default SaaS chrome, generic card grids, dark-glow blobs, over-motion, overused UI defaults
+- layout problems: weak hierarchy, category-interchangeable structure, generic spacing, missing product logic
+- copy issues: reveal hooks, contrarian slogans, buzzword-heavy copy, fake certainty, em-dash-heavy prose
+- honesty issues: fabricated metrics, proof claims without evidence, empty decoration that adds no meaning
 
-`markdown
-# Anti-AI Pattern Findings (Whole UI Scan)
+## 4. Output path
+
+- If `docs/` exists, write to `docs/anti_ai_pattern_findings.md`.
+- If there is no `docs/` folder, ask before creating a root-level output file.
+
+## 5. Report format
+
+Use this exact structure:
+
+```markdown
+# Anti-AI Pattern Findings
 
 Files scanned: <list>
 
 ## 1. Hallmark Audit
-
-[critical] <Pattern> — <file>:<line>
-  <Why it AI tell>
-  fix: <Actionable fix>
-  *Safety: <CSS only / Zero risk / etc.>*
-
-[major] <Pattern> — <file>:<line>
-  ...
+- [critical] <Pattern> — <file>:<line>
+  - Why: <why it reads as AI-generated>
+  - Fix: <actionable fix>
+  - Safety: <CSS-only / zero risk / etc.>
+- [major] <Pattern> — <file>:<line>
+  - Why: <why>
+  - Fix: <actionable fix>
 
 Summary — N critical · M major · K minor
-Verdict — [ships as slop | reads as AI-generated | close, fix minors]
-
----
+Verdict — <ships as slop | reads as AI-generated | close, fix minors>
 
 ## 2. Design-Taste-Frontend Audit
-
 - **<Rule>**: <Finding, line ref>
 
----
-
 ## 3. Impeccable Critique & Layout Structure
-
 - **Heuristic Score**: <Score>
-- **Action**: <Distill pass guidance>
-  > ⚠️ **EXTRA CAREFUL (POTENTIAL FUNCTIONAL RISK):** <Warn state, event bubbling, stopPropagation, navigation, streaming widgets>
+- **Action**: <short guidance>
+  > ⚠️ **EXTRA CAREFUL (POTENTIAL FUNCTIONAL RISK):** <state/event/bubbling/navigation/streaming warning>
 
----
-
-## 4. Humanise-Text Review (<docs>)
-
-- **AI Pattern**: <Fluff word> (<file>:<line>).
-  fix: <Clean replacement>
-
----
+## 4. Humanise-Text Review
+- **AI Pattern**: <phrase> (<file>:<line>)
+  - Fix: <clean replacement>
 
 ## 5. Implementation Agent Prompt
-<Ready prompt for agent to fix all findings safely.>
-`
+<ready prompt for the fix-up agent>
+```
 
-## 5. Risk Rules
+## 6. Risk rule
 
-- If change touches icons, event bubbling, state, or DOM nesting around forms/modals/streams: add ⚠️ EXTRA CAREFUL (POTENTIAL FUNCTIONAL RISK) tag.
-- Give exact file, line number, direct fix.
+If the fix touches forms, modals, stream UIs, icons, event bubbling, or state logic, add the ⚠️ risk tag and be explicit about the risk.
 
 
