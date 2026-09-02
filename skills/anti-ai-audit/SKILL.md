@@ -1,76 +1,75 @@
 ---
 name: anti-ai-audit
-description: Unified self-contained audit skill for UI slop, code review, architecture inspection, and AI-style prose issues. Use when the user asks for an anti-AI audit, a code review, a design critique, a DSA audit, a humanizer pass, or a full audit across all included checks. This skill reads only its own local references in `references/` and does not call sibling skills at runtime.
+description: Unified audit skill for anti-AI slop, frontend design review, code review, architecture complexity checks, and AI-written prose cleanup. Use this whenever the user asks for an anti-AI audit, slop check, UI/design review, PR review, architecture or DSA audit, humanize text, or "run all audits." This skill reads only local files in `references/` and never calls sibling skills at runtime.
 ---
 
 # Unified Audit (/anti-ai-audit)
 
-This is the canonical replacement for the older `anti-ai-audit` skill. It is fully self-contained: it reads local references only and does not depend on sibling skill resolution.
+This skill replaces the old anti-AI audit with one self-contained entry point. It keeps the audit logic local to this skill and does not depend on sibling skill resolution.
 
-The bundle includes the audit/review parts of the relevant local skills, with repetition trimmed where the same guidance appears in multiple places.
+## Trigger paths
 
-## 1. Included upstream sources
+Use this skill when the request matches any of these:
 
-These are the reference bundles this skill preserves locally:
+- anti-AI / slop / generic AI design review
+- UI audit / UX critique / design review
+- code review / PR review / diff review
+- architecture / DSA / complexity audit
+- humanize text / rewrite AI-sounding prose
+- "run all audits" / "do the audit bundle"
 
-- `references/design-taste-frontend-anti-slop.md` — extracted from `design-taste-frontend`
-- `references/hallmark-anti-patterns.md` — extracted from `hallmark`
-- `references/hallmark-slop-test.md` — extracted from `hallmark`
-- `references/impeccable-audit.md` — extracted from `impeccable`
-- `references/humanise-text-overused-ai-patterns.md` — extracted from `humanizer`
-- `references/code-review-criteria.md` — extracted from `code-review`
-- `references/dsa-codebase-audit.md` — extracted from `dsa-codebase-audit`
-- `references/provenance.md` — local registry of upstream extraction and source policy
+## Local reference bundle
 
-If a whole upstream skill is a single audit artifact and a stable raw GitHub URL is available in the runtime environment, add that URL to `references/provenance.md` and cite it there. Do not invent URLs. When raw URLs are unavailable, preserve the relevant excerpt locally as a reference copy.
-
-## 2. Routing rules
-
-### If the user names a specific audit type
-
-Run only the matching checks:
-
-- `anti-ai` / `slop` / `design audit` / `ui audit` -> `design-taste-frontend`, `hallmark`, `impeccable`, `humanise-text`
-- `code review` / `review` / `diff review` / `PR review` -> `code-review`
-- `architecture audit` / `dsa` / `complexity` / `refactor audit` -> `dsa-codebase-audit`
-- `humanize` / `rewrite AI text` / `text review` -> `humanizer`
-
-### If the user says "all" or "run all audits"
-
-Run the full included bundle in this order:
-
-1. Hallmark/UI anti-pattern audit
-2. Design-taste frontend anti-slop checks
-3. Impeccable critique and layout structure review
-4. Humaniser / prose anti-AI review
-5. Code review (standards + spec axes)
-6. DSA codebase audit (state/structure complexity review)
-
-Do not include `diagnosing-bugs`, `code-simplification`, or `codebase-design` in the default full bundle unless the user explicitly asks for those categories.
-
-## 3. Target discovery
-
-1. If the user gives a path, scan that target.
-2. Otherwise scan likely roots such as `src/`, `ui/`, `components/`, `pages/`, `styles/`, `docs/`, `README.md`, `AGENTS.md`, and source directories relevant to the request.
-3. If the scan is broad, list the candidate files and ask for confirmation before auditing.
-4. For code reviews, compare the target branch or diff against the fixed point the user provides.
-5. For architecture audits, inspect the repo read-only and summarize subsystem complexity, state representation, and refactor opportunities.
-
-## 4. Audit rules
-
-Read and apply the local reference files relevant to the selected mode:
+Read the relevant files in `references/` before judging anything:
 
 - `references/hallmark-slop-test.md`
 - `references/hallmark-anti-patterns.md`
 - `references/design-taste-frontend-anti-slop.md`
 - `references/impeccable-audit.md`
 - `references/humanise-text-overused-ai-patterns.md`
-- `references/code-review-criteria.md`
-- `references/dsa-codebase-audit.md`
 
-Negative findings should be concrete, file- and line-specific, and actionable. Prioritize evidence over generic taste comments.
+If a request is code or architecture oriented, load the matching local checklists in the same skill bundle and keep the criteria there, not in another skill.
 
-## 5. Report format
+## Routing
+
+### Specific audit
+
+If the user names one audit type, run only the matching checks.
+
+Examples:
+- anti-AI / slop / design audit -> UI + visual + text checks
+- code review / review / diff review -> code-review standards and the spec axis
+- DSA / architecture / complexity -> state, ownership, and simplification checks
+- humanize / rewrite AI-like prose -> language-pattern checks
+
+### All audits
+
+If the user says "all" or "run all audits", run the bundle in this order:
+
+1. Hallmark UI slop audit
+2. Design-taste anti-slop checks
+3. Impeccable critique and layout review
+4. Humanize-text review
+5. Code-review checks
+6. DSA / architecture review
+
+Then combine the results into one report.
+
+## Workflow
+
+1. Discover the target.
+   - If the user gives a path, scan that target.
+   - Otherwise scan likely roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `docs/`, `README.md`, `AGENTS.md`.
+   - If the scan is broad, list candidate files and ask for confirmation before auditing.
+2. Choose the mode.
+   - Specific audit type or full bundle.
+3. Apply the relevant rules.
+   - Use the matching files from `references/`.
+   - Only report concrete, evidence-based findings.
+4. Add the risk tag when the fix touches forms, modals, stream UIs, event bubbling, state logic, icons, or architecture boundaries.
+5. Write the final audit report in one pass.
+
+## Report format
 
 Use this exact structure:
 
@@ -97,7 +96,7 @@ Scope: <specific audit mode / all>
 - **Action**: <short guidance>
   > ⚠️ **EXTRA CAREFUL (POTENTIAL FUNCTIONAL RISK):** <state/event/bubbling/navigation/streaming warning>
 
-## 4. Humaniser / prose anti-AI review
+## 4. Humanise / prose anti-AI review
 - **AI Pattern**: <phrase> (<file>:<line>)
   - Fix: <clean replacement>
 
@@ -121,12 +120,13 @@ Scope: <specific audit mode / all>
 <ready prompt for the fix-up agent>
 ```
 
-## 6. Risk rule
+## Output path
 
-If the fix touches forms, modals, stream UIs, icons, event bubbling, state logic, or architecture boundaries, add the ⚠️ risk tag and state the risk explicitly.
+- If `docs/` exists, write to `docs/anti_ai_pattern_findings.md`.
+- If there is no `docs/` folder, ask before creating a root-level output file.
 
-## 7. Self-contained requirement
+## Self-contained requirement
 
-This skill must not call another skill to perform the audit. It must read from the local references in `references/` only. That is the main replacement contract for the old anti-AI audit skill.
+This skill must not call another skill to perform an audit. It reads only the local references in `references/` and stays self-contained.
 
 
