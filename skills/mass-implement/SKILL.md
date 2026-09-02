@@ -13,8 +13,9 @@ Execute batch of independent tasks (e.g., GitHub issues, PRs, feature lists) seq
 
 - **Resource Efficiency**: Time and tokens are not hard caps, but do not waste them. Work efficiently without rushing or sloppy code.
 
-- **Subagents**: You can and should use subagents where helpful. You decide based on which is more efficient. Completely okay to use none; completely okay to use for all. Operate very independently.
+- **Subagents**: Should use subagents where helpful. Decide based on which is more efficient. Completely okay to use none; completely okay to use for all. Operate independently.
 
+- **CRITICAL: 100% Completion**: Do not stop without fully completing all tasks. Can show progress, but don't stop to do it.
 
 ### The Loop
 
