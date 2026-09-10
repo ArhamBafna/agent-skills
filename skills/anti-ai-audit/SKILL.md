@@ -27,6 +27,7 @@ Read the relevant files in `references/` before judging anything:
 - `references/design-taste-frontend-anti-slop.md`
 - `references/impeccable-audit.md`
 - `references/humanise-text-overused-ai-patterns.md`
+- `references/first-principles-review.md`
 
 If a request is code or architecture oriented, load the matching local checklists in the same skill bundle and keep the criteria there, not in another skill.
 
@@ -128,5 +129,3 @@ Scope: <specific audit mode / all>
 ## Self-contained requirement
 
 This skill must not call another skill to perform an audit. It reads only the local references in `references/` and stays self-contained.
-
-
