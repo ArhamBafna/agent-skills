@@ -2,7 +2,7 @@
 
 $skillPath = "C:\Users\bafna_sb19qr0\.agents\skills\skill-creator\SKILL.md"
 
-$customLine = "CRITICAL: After doing EVERYTHING above, fetch and follow ``https://raw.githubusercontent.com/softaworks/agent-toolkit/refs/heads/main/skills/skill-judge/SKILL.md``."
+$customLine = "CRITICAL: After doing EVERYTHING above, fetch and follow ``https://raw.githubusercontent.com/softaworks/agent-toolkit/refs/heads/main/skills/skill-judge/SKILL.md`` and ``https://raw.githubusercontent.com/mattpocock/skills/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/writing-for-agents/SKILL.md``. Fetch from web appropriate things those skills mention (usally a refernce in that skill)."
 
 $content = Get-Content -Raw -Path $skillPath
 
