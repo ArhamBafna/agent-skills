@@ -1,5 +1,7 @@
 # Unified audit provenance
 
+IMP: IF YOU ARE AN AGENT RUNNING THIS SKILL, THIS FILE ISN'T FOR YOU.
+
 This bundle keeps the relevant audit guidance in one self-contained location so the replacement `anti-ai-audit` skill does not depend on sibling skills at runtime.
 
 ## Extraction rules used here
@@ -17,6 +19,7 @@ This bundle keeps the relevant audit guidance in one self-contained location so 
 - `humanizer` -> `references/humanise-text-overused-ai-patterns.md`
 - `code-review` -> `references/code-review-criteria.md`
 - `dsa-codebase-audit` -> `references/dsa-codebase-audit.md`
+- web -> `references/first-principles-review.md`
 
 ## Exclusions for this pass
 

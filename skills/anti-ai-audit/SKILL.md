@@ -1,26 +1,14 @@
 ---
 name: anti-ai-audit
-description: Unified audit skill for anti-AI slop, frontend design review, code review, architecture complexity checks, and AI-written prose cleanup. Use this whenever the user asks for an anti-AI audit, slop check, UI/design review, PR review, architecture or DSA audit, humanize text, or "run all audits." This skill reads only local files in `references/` and never calls sibling skills at runtime.
+description: Unified audit skill for anti-AI slop covering UI, code, and structure. Use this whenever the user asks for an anti-AI audit, slop check, UI/design review, architecture or DSA audit, or "run all audits." 
 ---
 
-# Unified Audit (/anti-ai-audit)
-
-This skill replaces the old anti-AI audit with one self-contained entry point. It keeps the audit logic local to this skill and does not depend on sibling skill resolution.
-
-## Trigger paths
-
-Use this skill when the request matches any of these:
-
-- anti-AI / slop / generic AI design review
-- UI audit / UX critique / design review
-- code review / PR review / diff review
-- architecture / DSA / complexity audit
-- humanize text / rewrite AI-sounding prose
-- "run all audits" / "do the audit bundle"
+# anti-ai-audit
+This skill reads only local files in `references/` and never calls sibling skills at runtime.
 
 ## Local reference bundle
 
-Read the relevant files in `references/` before judging anything:
+Read ALL files in `references/` (EXCEPT FOR `references\provenance.md`) before anything:
 
 - `references/hallmark-slop-test.md`
 - `references/hallmark-anti-patterns.md`
@@ -28,6 +16,8 @@ Read the relevant files in `references/` before judging anything:
 - `references/impeccable-audit.md`
 - `references/humanise-text-overused-ai-patterns.md`
 - `references/first-principles-review.md`
+- `references/code-review.md`
+- `references/dsa-codebase-audit.md`
 
 If a request is code or architecture oriented, load the matching local checklists in the same skill bundle and keep the criteria there, not in another skill.
 
@@ -45,37 +35,30 @@ Examples:
 
 ### All audits
 
-If the user says "all" or "run all audits", run the bundle in this order:
-
-1. Hallmark UI slop audit
-2. Design-taste anti-slop checks
-3. Impeccable critique and layout review
-4. Humanize-text review
-5. Code-review checks
-6. DSA / architecture review
-
-Then combine the results into one report.
+If the user says "all" or "run all audits", run all checks under references/. Then combine the results into one report.
 
 ## Workflow
 
 1. Discover the target.
    - If the user gives a path, scan that target.
-   - Otherwise scan likely roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `docs/`, `README.md`, `AGENTS.md`.
+   - Otherwise scan likely roots: `src/`, `ui/`, `components/`, `pages/`, `styles/`, `docs/`, `README.md`, `AGENTS.md`. THEN ASK USER CONFIRMATION.
    - If the scan is broad, list candidate files and ask for confirmation before auditing.
 2. Choose the mode.
    - Specific audit type or full bundle.
 3. Apply the relevant rules.
    - Use the matching files from `references/`.
    - Only report concrete, evidence-based findings.
-4. Add the risk tag when the fix touches forms, modals, stream UIs, event bubbling, state logic, icons, or architecture boundaries.
-5. Write the final audit report in one pass.
+4. Add the risk tag when the fix touches trivial logic or code (like security, structure, image handling, etc).
+5. Write the final audit report.
 
 ## Report format
 
-Use this exact structure:
+For all templates given below, repeat for all items that fall in that category. If output format is given in that reference file, use that format(overriding what's given in this template below).
+
+Structure:
 
 ```markdown
-# Unified Audit Findings
+# anti-ai-audit findings
 
 Files scanned: <list>
 Scope: <specific audit mode / all>
@@ -84,10 +67,12 @@ Scope: <specific audit mode / all>
 - [critical] <Pattern> — <file>:<line>
   - Why: <why it reads as AI-generated or template-driven>
   - Fix: <actionable fix>
-  - Safety: <CSS-only / zero risk / etc.>
+  - Safety (optional - if any): <CSS-only / zero risk / etc.>
+
 - [major] <Pattern> — <file>:<line>
   - Why: <why>
   - Fix: <actionable fix>
+
 
 ## 2. Design-Taste-Frontend audit
 - **<Rule>**: <Finding, line ref>
@@ -112,19 +97,16 @@ Scope: <specific audit mode / all>
   - Why: <what's missing or wrong>
 
 ## 6. DSA / architecture audit
-- **Subsystem:** <name>
-- **Finding:** <simplification / invalid-state / complexity issue>
-- **Evidence:** <file>:<line>
-- **Proposed model:** <simpler state or structure>
+<format given in that reference file>
 
 ## 7. Implementation agent prompt
-<ready prompt for the fix-up agent>
+<ready prompt for all items caught in the audit for the fix-up agent>
 ```
 
 ## Output path
 
-- If `docs/` exists, write to `docs/anti_ai_pattern_findings.md`.
-- If there is no `docs/` folder, ask before creating a root-level output file.
+- If `docs/` exists, write to `docs/anti_ai_audit_findings.md`.
+- If there is no `docs/` folder, write to a root-level output file, THEN let user know that the output is written there.
 
 ## Self-contained requirement
 

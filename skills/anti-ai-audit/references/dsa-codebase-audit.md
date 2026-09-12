@@ -1,4 +1,4 @@
-# DSA codebase audit (extracted from `dsa-codebase-audit`)
+# DSA codebase audit
 
 This section preserves the architecture review logic that belongs to the DSA audit skill without depending on that skill at runtime.
 

@@ -1,4 +1,4 @@
-# Code review criteria (extracted from `code-review`)
+# Code review
 
 This section preserves the audit logic that belongs to the code review skill without depending on that skill at runtime.
 
