@@ -18,13 +18,6 @@ README.md
 apply-skill-creator-patch.ps1
 ```
 
-## Install
-
-```powershell
-npx skills add ArhamBafna/agent-skills@<skill-name>
-npx skills add ArhamBafna/agent-skills
-```
-
 ## Workflow
 
 When adding or changing skill:
