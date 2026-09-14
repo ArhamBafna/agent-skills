@@ -17,6 +17,9 @@ Execute batch of independent tasks (e.g., GitHub issues, PRs, feature lists) seq
 
 - **CRITICAL: 100% Completion**: Do not stop without fully completing all tasks. Can show progress, but don't stop to do it.
 
+- **Testing**: FLEXIBE! Write tests if you want. Following is merely suggested (Full discretion; do whatever you think is best.): If a fix is small, skip tests. Completely okay to merge tests, skip tests, or write one test for a specific fix.
+
+
 ### The Loop
 
 For each item in batch:
