@@ -2,7 +2,7 @@
 
 IMP: IF YOU ARE AN AGENT RUNNING THIS SKILL, THIS FILE ISN'T FOR YOU.
 
-This bundle keeps the relevant audit guidance in one self-contained location so the replacement `anti-ai-audit` skill does not depend on sibling skills at runtime.
+This bundle keeps the relevant audit guidance in one self-contained location so the replacement `full-audit` skill does not depend on sibling skills at runtime.
 
 ## Extraction rules used here
 
@@ -17,9 +17,10 @@ This bundle keeps the relevant audit guidance in one self-contained location so 
 - `hallmark` -> `references/hallmark-anti-patterns.md`, `references/hallmark-slop-test.md`
 - `impeccable` -> `references/impeccable-audit.md`
 - `humanizer` -> `references/humanise-text-overused-ai-patterns.md`
-- `code-review` -> `references/code-review-criteria.md`
+- `code-review` -> `references/code-review.md`
 - `dsa-codebase-audit` -> `references/dsa-codebase-audit.md`
 - web -> `references/first-principles-review.md`
+- web (vibe-coding 20-point pre-ship checklist) -> `references/pre-ship-checklist.md`
 
 ## Exclusions for this pass
 

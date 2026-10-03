@@ -1,9 +1,9 @@
 ---
-name: anti-ai-audit
-description: Unified audit skill for anti-AI slop covering UI, code, and structure. Use this whenever the user asks for an anti-AI audit, slop check, UI/design review, architecture or DSA audit, or "run all audits." 
+name: full-audit
+description: Comprehensive audit skill covering UI slop, design systems, prose, code review standards, architecture, and 20-point pre-ship vibe checks. Use whenever the user asks for a full audit, anti-AI audit, slop check, UI/design review, code review, architecture/DSA audit, or "run all audits."
 ---
 
-# anti-ai-audit
+# full-audit
 This skill reads only local files in `references/` and never calls sibling skills at runtime.
 
 ## Local reference bundle
@@ -18,8 +18,15 @@ Read ALL files in `references/` (EXCEPT FOR `references\provenance.md`) before a
 - `references/first-principles-review.md`
 - `references/code-review.md`
 - `references/dsa-codebase-audit.md`
+- `references/pre-ship-checklist.md`
 
 If a request is code or architecture oriented, load the matching local checklists in the same skill bundle and keep the criteria there, not in another skill.
+
+## Agent Execution Strategy
+
+This skill is agent-agnostic and compatible with any AI coding agent (Claude Code, Gemini/Antigravity, Cursor, Codex, Windsurf, Aider, or CLI agent):
+- **Multi-Agent / Subagent Mode**: If the host environment supports subagents or parallel background workers, dispatch audit lanes in parallel (e.g. UI/slop, code review, DSA, and the 5 pre-ship lanes). Merge results into one report.
+- **Single-Agent Mode**: If running in a single-agent environment, execute the checks sequentially in one pass.
 
 ## Routing
 
@@ -35,7 +42,7 @@ Examples:
 
 ### All audits
 
-If the user says "all" or "run all audits", run all checks under references/. Then combine the results into one report.
+If the user says "all", "run all audits", or "full audit", run all checks under references/ (including the 20-point pre-ship checklist). Then combine the results into one report.
 
 ## Workflow
 
@@ -48,7 +55,7 @@ If the user says "all" or "run all audits", run all checks under references/. Th
 3. Apply the relevant rules.
    - Use the matching files from `references/`.
    - Only report concrete, evidence-based findings.
-4. Add the risk tag when the fix touches trivial logic or code (like security, structure, image handling, etc).
+4. Add the risk tag when the fix touches non-trivial logic or code (like security, structure, state, image handling, etc).
 5. Write the final audit report.
 
 ## Report format
@@ -58,7 +65,7 @@ For all templates given below, repeat for all items that fall in that category. 
 Structure:
 
 ```markdown
-# anti-ai-audit findings
+# full-audit findings
 
 Files scanned: <list>
 Scope: <specific audit mode / all>
@@ -99,14 +106,20 @@ Scope: <specific audit mode / all>
 ## 6. DSA / architecture audit
 <format given in that reference file>
 
-## 7. Implementation agent prompt
-<ready prompt for all items caught in the audit for the fix-up agent>
+## 7. Pre-ship 20-point vibe & polish audit
+- [critical | major | minor] <Lane: Checkpoint> — <file>:<line>
+  - Issue: <concise summary of violation>
+  - Evidence: `<code snippet or selector>`
+  - Fix: <actionable remedy>
+
+## 8. Implementation agent prompt
+<ready prompt bundling all findings across sections 1-7 for an implementation agent to fix in a single pass>
 ```
 
 ## Output path
 
-- If `docs/` exists, write to `docs/anti_ai_audit_findings.md`.
-- If there is no `docs/` folder, write to a root-level output file, THEN let user know that the output is written there.
+- If `docs/` exists, write to `docs/full_audit_findings.md`.
+- If there is no `docs/` folder, write to a root-level output file (`full_audit_findings.md`), THEN let user know that the output is written there.
 
 ## Self-contained requirement
 

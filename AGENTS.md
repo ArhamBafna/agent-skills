@@ -58,12 +58,12 @@ git status --short
 
 ## Skill-Specific Rules
 
-### `anti-ai-audit`
+### `full-audit`
 
 When adding reference file, update:
 
-- `skills/anti-ai-audit/SKILL.md`
-- `skills/anti-ai-audit/references/provenance.md`
+- `skills/full-audit/SKILL.md`
+- `skills/full-audit/references/provenance.md`
 
 Ask user when update scope is unclear.
 
