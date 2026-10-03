@@ -1,6 +1,6 @@
 ---
 name: motion-design
-description: Build deterministic, code-rendered motion design videos, product launch reels, UI state morph loops, and kinetic typography using pure HTML/Canvas/SVG, closed-form springs, Playwright, and FFmpeg. Use when asked to create a promo video, animate UI components, produce a product launch showreel, build kinetic motion graphics, render animation to MP4, or when invoking /motion-design.
+description: Build deterministic, code-rendered motion design videos, product launch reels, UI state morph loops, and kinetic typography using pure HTML/Canvas/SVG, closed-form springs, Playwright, and FFmpeg.
 ---
 
 # Motion Design Studio

@@ -1,6 +1,6 @@
 ---
 name: audit-config
-description: Audit persistent workspace configurations (instructions, skills, rules, MCPs, memory) for redundant, outdated, conflicting items. Use when user asks to "audit config", "clean up settings", "review rules", "audit skills", "clean up instructions", etc.
+description: Audit persistent workspace configurations (instructions, skills, rules, MCPs, memory) for redundant, outdated, conflicting items.
 ---
 
 # Audit Configuration

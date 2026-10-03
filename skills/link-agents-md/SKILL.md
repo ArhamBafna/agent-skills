@@ -1,6 +1,6 @@
 ---
 name: link-agents-md
-description: Hardlink C:\Users\bafna_sb19qr0\Desktop\AGENTS.md to global rule files for AI coding agents and IDEs. Triggers on "link AGENTS.md", "sync global rules to <agent>", "connect agent rules", or /link-agents-md.
+description: Hardlink C:\Users\bafna_sb19qr0\Desktop\AGENTS.md to global rule files for AI coding agents and IDEs.
 ---
 
 # link-agents-md

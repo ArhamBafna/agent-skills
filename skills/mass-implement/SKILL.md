@@ -1,6 +1,6 @@
 ---
 name: mass-implement
-description: Implement multiple features, issues, or fixes in bulk without stopping. Use when asked to "mass implement", process batch issues/PRs, or churn through task lists unattended.
+description: Implement multiple features, issues, or fixes in bulk without stopping using /implement skill
 ---
 
 # Mass Implement

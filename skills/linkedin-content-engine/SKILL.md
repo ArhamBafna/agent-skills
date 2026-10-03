@@ -4,9 +4,7 @@ description: >-
   Weekly LinkedIn content engine. Pulls fresh signal from your own profile plus
   a couple of creators you learn from, then produces a ranked idea bank and 5
   fully drafted LinkedIn posts in your voice — every idea and draft framed to one
-  of your buyer personas and their job-to-be-done. Always grounds positioning,
-  proof, and ICP/JTBD in your source-of-truth.md. Trigger on "run the weekly
-  content", "pull content ideas", "draft this week's posts", or on a Monday schedule.
+  of your buyer personas and their job-to-be-done.
 ---
 
 # Weekly LinkedIn Content Engine

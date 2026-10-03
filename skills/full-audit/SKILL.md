@@ -1,6 +1,6 @@
 ---
 name: full-audit
-description: Comprehensive audit skill covering UI slop, design systems, prose, code review standards, architecture, and 20-point pre-ship vibe checks. Use whenever the user asks for a full audit, anti-AI audit, slop check, UI/design review, code review, architecture/DSA audit, or "run all audits."
+description: Comprehensive audit skill covering UI slop, design systems, prose, code review standards, architecture, and 20-point pre-ship vibe checks.
 ---
 
 # full-audit
