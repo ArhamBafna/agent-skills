@@ -12,6 +12,7 @@ Skills for agents. Compatible with [skills.sh](https://skills.sh) (`npx skills`)
 | **link-agents-md** | Hardlink C:\Users\bafna_sb19qr0\Desktop\AGENTS.md to global rule files for AI coding agents and IDEs. | `npx skills add ArhamBafna/agent-skills@link-agents-md` |
 | **linkedin-content-engine** | Weekly LinkedIn content engine producing ranked idea bank and 5 drafted posts. | `npx skills add ArhamBafna/agent-skills@linkedin-content-engine` |
 | **mass-implement** | Implement multiple features, issues, or fixes in bulk without stopping. | `npx skills add ArhamBafna/agent-skills@mass-implement` |
+| **motion-design** | Build deterministic code-rendered motion graphics, product launch reels, and UI loops. | `npx skills add ArhamBafna/agent-skills@motion-design` |
 | **pick-browser-auto** | Decide whether to use agent-browser or playwriter and proceed with task. | `npx skills add ArhamBafna/agent-skills@pick-browser-auto` |
 
 ---
