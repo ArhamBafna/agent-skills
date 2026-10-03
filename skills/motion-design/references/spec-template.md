@@ -1,64 +1,82 @@
 # Animation Spec & Storyboard Template
 
-Use this template to map out the motion sequence before writing code. A strong spec prevents visual clutter and ensures clean transitions.
+This template is a **state-sequence blueprint** (chassis), NOT a stylistic preset. It maps out time states and spring values before writing code.
+
+---
+
+## Anti-Contagion Rule (DO NOT Copy Examples Literally)
+Most AI motion videos suffer from "brief contagion": they all copy the same dark-mode SaaS card morphing with purple glows.
+**DO NOT repeat this mistake.** Adapt this spec completely to the user's brand, palette, and product category.
 
 ---
 
 ## 1. Metadata
-* **Project**: `<Product or Feature Name>`
-* **Goal**: `<Launch reel / UI morph / Feature showcase / Kinetic text>`
-* **Duration**: `<Seconds, e.g. 15s>`
+* **Project**: `<Product, Brand, or Concept Name>`
+* **Goal**: `<Launch Reel | UI Morph Loop | Kinetic Typography | Feature Showcase>`
+* **Style Direction**: `<e.g. Brutalist Minimalist, Warm Organic, High-Gloss Tech, Bold Editorial, Playful>`
+* **Duration**: `<Seconds, default 15s>`
 * **FPS**: `60`
-* **Aspect Ratio**: `<16:9 (1920x1080) | 9:16 (1080x1920) | 1:1 (1080x1080)>`
+* **Aspect Ratio**: `<16:9 (1920x1080) | 9:16 (1080x1920) | 1:1 (1080x1080) | All>`
 * **Audio**: `<path/to/audio.mp3 | None>`
 
 ---
 
-## 2. Visual Palette & Brand
-* **Background**: `<Hex color or gradient, e.g. #090A0F>`
-* **Primary / Accent**: `<Hex color, e.g. #4F46E5>`
-* **Text Main**: `<Hex color, e.g. #F8FAFC>`
-* **Text Muted**: `<Hex color, e.g. #94A3B8>`
-* **Font Family**: `<e.g. system-ui, Inter, Outfit, or local SVG paths>`
-* **Asset List**:
-  * Logo: `<path or inline SVG>`
-  * UI Screenshots / Mockups: `<paths>`
+## 2. Visual Palette & Brand Identity
+* **Background**: `<Base canvas color, e.g. #090A0F, #FAFAF9, or #18181B>`
+* **Primary / Accent**: `<Hex color>`
+* **Secondary**: `<Hex color>`
+* **Typography**: `<Font family, weight, tracking>`
+* **Asset Manifest**:
+  * Real product screenshots / mockups
+  * Brand logo (SVG or high-res PNG)
+  * Vector icons / illustrations
 
 ---
 
 ## 3. Beat Sheet (Keyframe Timeline)
 
-Divide the timeline into clear states. Aim for visual payoff every 2-3 seconds.
+Divide the timeline into 4-6 distinct moments with visual payoffs every 2-3 seconds. Choose the archetype that matches the project:
 
-| Time Range | State Name | Visual Action | Spring Preset |
+### Archetype A: Product Launch Reel (Showcase)
+| Time | State | Visual Action | Spring Preset |
 | :--- | :--- | :--- | :--- |
-| `0.0s - 2.5s` | **Hook / Hero** | Central badge enters with overshoot; brand headline types in | `heavy` |
-| `2.5s - 5.5s` | **UI Morph 1** | Hero badge expands into interactive card; cursor clicks button | `snappy` |
-| `5.5s - 9.0s` | **Feature Showcase** | Card morphs into data visualizer / command bar; metrics tick up | `default` |
-| `9.0s - 12.0s` | **Speed / Power** | Fast cuts, kinetic typography highlighting 3 core values | `snappy` |
-| `12.0s - 15.0s` | **Call to Action** | UI folds into glowing CTA pill; logo lockup settles | `playful` |
+| `0.0s - 2.5s` | **Hook** | Bold headline enters with high mass; logo settles | `heavy` |
+| `2.5s - 6.0s` | **Hero UI** | Real app interface slides into center; key metric badge highlights | `default` |
+| `6.0s - 10.0s` | **Feature Drop** | Interface zooms into interactive tool; cursor triggers instant action | `snappy` |
+| `10.0s - 13.0s` | **Speed/Proof** | High-energy split screen or metric counter ticking up | `snappy` |
+| `13.0s - 15.0s` | **Call to Action** | Layout settles into clean resting card, URL, and launch badge | `playful` |
+
+### Archetype B: Kinetic Typography (Editorial / Fast-Paced)
+| Time | State | Visual Action | Spring Preset |
+| :--- | :--- | :--- | :--- |
+| `0.0s - 3.0s` | **Strobe / Punch** | Massive oversized words snapping to center grid; sharp cuts | `snappy` |
+| `3.0s - 7.0s` | **Statement** | Contrast inversion (light to dark); staggered letter tracking | `heavy` |
+| `7.0s - 11.0s` | **Feature Rhythm** | 3 rapid-fire value statements sliding across screen | `snappy` |
+| `11.0s - 15.0s` | **Lockup** | Letters collapse into final brand mark and website URL | `default` |
+
+### Archetype C: UI Morph Loop (Single Continuous Element)
+| Time | State | Visual Action | Spring Preset |
+| :--- | :--- | :--- | :--- |
+| `0.0s - 2.5s` | **Origin** | Small button or search bar sits at rest | `default` |
+| `2.5s - 6.5s` | **Expansion** | Cursor clicks; button expands into full modal / dashboard view | `snappy` |
+| `6.5s - 11.0s` | **Transformation** | Modal morphs into interactive slider or data chart | `default` |
+| `11.0s - 15.0s` | **Return Loop** | Chart contracts seamlessly back to original button shape (seamless loop) | `playful` |
 
 ---
 
 ## 4. State List & Morph Mapping
 
-Define the properties of the morphing elements across states so the `track(t, keyframes)` function can interpolate them smoothly:
+Define animated parameters across keyframes for `Motion.track(t, keyframes)`:
 
 ```javascript
-const morphStates = {
-  container: [
-    { t: 0.0, value: { width: 120, height: 120, radius: 60, opacity: 0 }, preset: 'heavy' },
-    { t: 0.5, value: { width: 120, height: 120, radius: 60, opacity: 1 }, preset: 'heavy' },
-    { t: 2.5, value: { width: 680, height: 420, radius: 24, opacity: 1 }, preset: 'default' },
-    { t: 8.5, value: { width: 780, height: 180, radius: 16, opacity: 1 }, preset: 'snappy' },
-    { t: 12.5, value: { width: 320, height: 72, radius: 36, opacity: 1 }, preset: 'playful' }
-  ],
-  cursor: [
-    { t: 0.0, value: { x: -100, y: -100, visible: 0 } },
-    { t: 3.0, value: { x: 450, y: 320, visible: 1 }, preset: 'default' },
-    { t: 4.2, value: { x: 520, y: 380, visible: 1, click: true }, preset: 'snappy' }
-  ]
-};
+// Example: Driving a dynamic container without re-simulating physics
+const containerStates = [
+  { t: 0.0, value: { width: 200, height: 60, radius: 30, opacity: 0 }, preset: 'heavy' },
+  { t: 0.4, value: { width: 200, height: 60, radius: 30, opacity: 1 }, preset: 'heavy' },
+  { t: 2.5, value: { width: 720, height: 480, radius: 16, opacity: 1 }, preset: 'default' },
+  { t: 7.0, value: { width: 840, height: 220, radius: 12, opacity: 1 }, preset: 'snappy' },
+  { t: 12.0, value: { width: 340, height: 80, radius: 40, opacity: 1 }, preset: 'playful' }
+];
 ```
 
 ---
@@ -66,5 +84,5 @@ const morphStates = {
 ## 5. Gotchas & Constraints Checklist
 - [ ] No `setInterval`, `setTimeout`, or `requestAnimationFrame` used for animation timing.
 - [ ] Every element position is calculated strictly as a function of `t`.
-- [ ] Aspect ratio responsive: elements sized via `%`, `vmin`, `vmax`, or scaled coordinate system.
-- [ ] Last frame matches first frame if looping is required.
+- [ ] Responsive sizing (`vw`, `vh`, `%`, or SVG viewBox) so it works across 16:9, 9:16, and 1:1.
+- [ ] No generic placeholder text ("Lorem Ipsum", "Amazing App") — use real product content.
