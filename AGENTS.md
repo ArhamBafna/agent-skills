@@ -24,33 +24,22 @@ apply-skill-creator-patch.ps1
 
 1. Read related existing skills and references for context.
 2. Use `/skill-creator` to design, draft, and test.
-3. Apply `/caveman` style compression:
-   - Follow the **Compression Rules** below.
-   - Behavior and output must stay identical with or without compression.
-4. Run `skill-judge` and apply `writing-for-agents` referenced at the bottom of `/skill-creator`.
+3. Read `/caveman` skill and write in that style:
+  - Behavior and output must stay identical with or without compression
+  - Drop: fluff, ceremony, repetition
+  - Keep all substance (commands, flags, parameters, paths, logic, schemas, etc)
+4. Run the two skills referenced at the bottom of `/skill-creator`.
 5. Keep skill self-contained; document runtime dependencies.
 6. Update `README.md` when adding the new skill.
 7. Use repository-relative paths, PowerShell syntax, and Windows backslashes.
-8. Keep personal data, credentials, API keys, and generated output out of Git.
 
 ### Editing an Existing Skill
 
 1. Read target skill's `SKILL.md` and references first.
 2. Direct edits by default for bugfixes, tweaks, and updates. Use `/skill-creator` only for major overhauls or structural redesigns.
-3. Apply `/caveman` style compression: maintain or improve conciseness while keeping full logic and behavior intact.
+3. Apply `/caveman` style compression (same rules as creating a skill).
 4. Update `README.md` if skill name, install path, or catalog changes.
 5. Use repository-relative paths, PowerShell syntax, and Windows backslashes.
-6. Keep personal data, credentials, API keys, and generated output out of Git.
-
-### Compression Rules
-
-When writing or editing skill instructions:
-
-- **Same output guaranteed**: Output quality and agent behavior must be identical with or without compression.
-- **Drop fluff and ceremony**: Remove chatty intros, polite filler, obvious explanations, and meta-commentary that the agent does not need.
-- **Remove repetition**: State each rule once clearly.
-- **Keep all substance**: Keep all commands, flags, parameters, paths, logic, schemas, and edge cases exact.
-- **Direct voice**: Imperative, direct, plain words. Use concise Markdown, existing terminology, and plain ASCII unless Unicode is needed.
 
 ## Validation
 
@@ -61,6 +50,7 @@ For skill changes, verify:
 - Referenced local files exist.
 - Commands and paths match repository.
 - Links are intentional and expose no private data.
+- Skill compatible with ANY agent / setup. Installed agents can run it in their own environments.
 
 Run:
 
@@ -86,8 +76,3 @@ When adding reference file, update:
 - `skills/full-audit/references/provenance.md`
 
 Ask user when update scope is unclear.
-
-### `audit-config`
-
-Keep guidance general for any agent setup, not only Claude Code. Avoid
-hardcoded paths. Ensure installed agents can run it in their own environments.
