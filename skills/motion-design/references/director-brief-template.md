@@ -1,69 +1,55 @@
-# Director's Creative Brief Template
+# Director Brief Template
 
-Use this comprehensive brief when directing longer promo films, cinematic launch videos, or story-driven animations.
-
-This template sets narrative structure, character/asset bibles, and quality bars. It does **NOT** enforce a specific visual aesthetic.
+Narrative storyboard for long films (>20s). Sets story, assets, quality gates. Not a locked aesthetic.
 
 ---
 
-## 1. Aesthetic Direction Selection (Pick ONE Extreme)
-
-Do NOT default to generic AI look (purple/blue neon gradients with floating cards). Commit to an intentional visual identity:
-
-* **Brutalist / Technical**: Monospaced typography, sharp grid lines, raw data readouts, high contrast black & white with single accent color.
-* **High-Craft Editorial**: Elegant serif headlines, generous whitespace, warm muted tones, subtle film grain, smooth camera glides.
-* **High-Energy Kinetic**: Rapid cuts, massive kinetic typography, high-velocity spring snaps, bold graphic silhouettes.
-* **Warm / Playful**: Rounded shapes, rich earth tones or vibrant pastels, bouncy overshoot physics, friendly character/mascot rigs.
-* **Retro-Futuristic**: Phosphor green or amber terminal vibes, CRT scanline overlays, vintage computer UI motifs.
+## 1. Aesthetic Direction (Pick ONE)
+Never default to AI purple gradient soup. Choose clear direction:
+* **Brutalist / Technical**: Monospace type, sharp grid, data readouts, black & white with single accent.
+* **Editorial Craft**: Serif headlines, generous whitespace, muted tones, subtle film grain, gliding camera.
+* **High-Energy Kinetic**: Rapid cuts, massive typography, fast spring snaps, high-contrast shapes.
+* **Warm / Playful**: Rounded geometry, earth/pastel tones, bouncy overshoot, mascot/character rigs.
+* **Retro-Futuristic**: Phosphor terminal green/amber, CRT scanline overlays, vintage OS motifs.
 
 ---
 
-## 2. The Film in One Line (Logline)
-* **Logline**: `<One clear sentence summarizing what happens and why it matters>`
-* **The "Joke" / Aha Moment**: `<The visual surprise, juxtaposition, or turning point that earns attention>`
+## 2. Core Narrative
+* **Logline**: `<One sentence: what happens and why it matters>`
+* **Visual Hook / Aha**: `<Surprise or contrast stopping the scroll>`
 
 ---
 
-## 3. Style Anchors & Visual References
-* **Reference Sources**: `<Links or paths to screenshots, paintings, posters, or existing video frames>`
-* **Keep vs Discard**:
-  * **Keep**: `<Specific traits to emulate: e.g. snappy typographic pacing, high contrast>`
-  * **Discard**: `<Specific traits to avoid: e.g. generic floating cubes, slow fades>`
+## 3. Style Anchors
+* **References**: Paths or links to target screenshots, posters, frames.
+* **Keep**: Visual traits to replicate (e.g. snappy cuts, high contrast).
+* **Discard**: Traits to reject (e.g. generic floating cubes, slow fades).
 
 ---
 
-## 4. Brand & Asset Bible
+## 4. Brand Bible
 * **Brand Name**: `<Name>`
-* **Color Hierarchy**:
-  * Canvas / Depth: `<Dark or light base hex>`
-  * Surface / Cards: `<Elevated base hex>`
-  * Accent / Energy: `<Vibrant hex>`
-  * Text Primary & Muted: `<Hex values>`
-* **Typography**:
-  * Headline: `<Font name / weight / letter-spacing>`
-  * Body / Mono: `<Font name for secondary labels, metrics, code>`
-* **Asset Manifest**:
-  * App screenshots, vector SVGs, logo marks, character rigs.
+* **Colors**: Canvas hex, surface hex, accent hex, text hex.
+* **Typography**: Headline font/weight, body/mono font.
+* **Assets**: Screenshots, vector SVGs, logo marks, character rigs.
 
 ---
 
-## 5. Beat Sheet & Timing Gates
+## 5. Beat Sheet & Gates
 
-| Gate | Timestamp | Narrative Goal | Visual Focus | Quality Requirement |
+| Gate | Time | Goal | Focus | Quality Bar |
 | :--- | :--- | :--- | :--- | :--- |
-| **Hook** | `0.0s - 2.0s` | Grab immediate attention | High-impact entrance or provocative question | Must arrest attention in first 1.5s |
-| **Friction** | `2.0s - 5.0s` | Showcase the problem or chaos | Rapid movement, fragmented elements, high contrast | Clear visual hierarchy |
-| **Resolution** | `5.0s - 10.0s` | Product smoothly solves it | UI organizes, elements snap into order, metrics rise | Closed-form spring with subtle overshoot |
-| **Climax** | `10.0s - 13.0s` | Core differentiator / speed | Kinetic camera moves, full-width showcase | Responsive, zero clipped text |
-| **Outro** | `13.0s - 15.0s` | Call to action & settle | Final brand emblem, URL, resting action button | Clean settle into resting state |
+| **Hook** | `0.0s - 2.0s` | Grab attention | High-impact text or emblem | Hook viewer in 1.5s |
+| **Friction** | `2.0s - 5.0s` | Frame problem | Rapid movement, fragmented elements | Clear hierarchy |
+| **Resolution**| `5.0s - 10.0s` | Product solves it | UI organizes, metrics rise | Spring overshoot |
+| **Climax** | `10.0s - 13.0s` | Core differentiator | Kinetic camera, full showcase | Zero clipped text |
+| **Outro** | `13.0s - 15.0s` | CTA & settle | Final emblem, URL, resting button | Clean resting state |
 
 ---
 
-## 6. Visual Critique Criteria (Scorecard)
-During the critique pass, evaluate keyframe stills against this 5-point standard (each rated 1-10; target average >= 8/10):
-
-1. **Composition & Bounding**: No clipped text, no overlapping labels, comfortable edge margins.
-2. **Contrast & Legibility**: Type is instantly readable; WCAG AA compliant contrast.
-3. **Motion Physics**: Elements accelerate and decelerate with spring mass; zero linear tweens.
-4. **Pacing & Beat Alignment**: Transitions land on key musical beats or rhythmic 2-3 second intervals.
-5. **Authenticity**: Looks bespoke and intentionally designed; zero AI-slop tropes.
+## 6. Frame Critique Scorecard (Target >= 8/10)
+1. **Composition**: No clipped text, comfortable margins.
+2. **Contrast**: High legibility, WCAG AA compliant.
+3. **Physics**: Springs with mass; zero robotic linear tweens.
+4. **Pacing**: Transitions hit musical beats or 2-3s rhythm.
+5. **Authenticity**: Bespoke look; zero AI tropes.
