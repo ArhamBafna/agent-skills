@@ -7,7 +7,6 @@ Skills for agents. Compatible with [skills.sh](https://skills.sh) (`npx skills`)
 | Skill | Description | Install |
 | :--- | :--- | :--- |
 | **audit-config** | Audit persistent workspace config (instructions, skills, MCPs, memory) with KEEP/REMOVE workflow. | `npx skills add ArhamBafna/agent-skills@audit-config` |
-| **dsa-codebase-audit** | App-wide, read-only DSA and organizing-model audit with bounded agent lanes. | `npx skills add ArhamBafna/agent-skills@dsa-codebase-audit` |
 | **full-audit** | Comprehensive audit covering UI slop, design system, prose, code standards, DSA, and 20-point pre-ship checks. | `npx skills add ArhamBafna/agent-skills@full-audit` |
 | **link-agents-md** | Hardlink C:\Users\bafna_sb19qr0\Desktop\AGENTS.md to global rule files for AI coding agents and IDEs. | `npx skills add ArhamBafna/agent-skills@link-agents-md` |
 | **linkedin-content-engine** | Weekly LinkedIn content engine producing ranked idea bank and 5 drafted posts. | `npx skills add ArhamBafna/agent-skills@linkedin-content-engine` |
